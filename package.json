@@ -1,0 +1,20 @@
+{
+  "name": "cabo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:server": "vite build && wrangler d1 migrations apply cabo --local && wrangler dev",
+    "build": "vite build",
+    "test": "node --test test/",
+    "deploy": "vite build && wrangler d1 migrations apply cabo --remote && wrangler deploy"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5",
+    "wrangler": "^4.152.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261019.1": true
+  }
+}

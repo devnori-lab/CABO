@@ -1,0 +1,39 @@
+{
+	// One Worker serves the built site (dist/), the JSON API and the room WebSockets.
+	"name": "cabo",
+	"main": "server/worker.js",
+	"compatibility_date": "2026-10-01",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"not_found_handling": "single-page-application",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "ROOMS",
+				"class_name": "Room"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"Room"
+			]
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cabo",
+			// From `npx wrangler d1 create cabo`.
+			"database_id": "cb8405df-aca6-4566-bf4a-1bd2f1d215c4",
+			"migrations_dir": "migrations"
+		}
+	]
+}
